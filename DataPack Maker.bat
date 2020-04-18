@@ -1,13 +1,14 @@
 @echo off
 color f0
-title Data- and Resourcepack Creator v1.1.0
-echo Data- and Resourcepack Creator v1.1.0
+set Version=v1.1.1
+title Data- and Resourcepack Creator %Version%
+echo Data- and Resourcepack Creator %Version%
 echo.
 set count==1
 :Auswahlmenu
 echo Sprache / Langue
 echo.
-echo Auswahlmenue
+echo Waehle / Choice
 echo ============
 echo.
 echo [De] : Deutsch
@@ -77,10 +78,10 @@ goto create
 :create
 if %count%==1 if %Pack%==DP if %MCver%==1.14 goto createDP1-14
 if %count%==1 if %Pack%==RP if %MCver%==1.14 goto createRP1-14
-if %count%==2 if %Pack%==DP if %MCver%==1.14 if %lang%==De goto createDP1-14De
+if %count%==2 if %Pack%==DP if %MCver%==1.14 goto createDP1-File
 if %count%==2 if %Pack%==RP if %MCver%==1.14 if %lang%==De goto createRP1-14De
 if %count%==2 if %Pack%==DP if %MCver%==1.14 if %lang%==En goto createDP1-14En
-if %count%==2 if %Pack%==RP if %MCver%==1.14 if %lang%==En goto createRP1-14En
+
 
 :createDP1-14
 mkdir "datapacks"
@@ -132,18 +133,17 @@ break>"%packname%"\data\%filesystem%\functions\load.mcfunction
 break>"%packname%"\data\%filesystem%\functions\tick.mcfunction
 break>"%packname%"\data\%filesystem%\functions\template.mcfunction
 set count==2
-:createDP1-14De
+:createDP1-File
 (
 echo Erklärungen zu den neuen Rezepten ab Minecraft Version 1.12 findet ihr hier https://minecraft-de.gamepedia.com/Rezeptdaten
 echo Erstelle passende Rezept JSONs auf https://crafting.thedestruc7i0n.ca/
-)>"%packname%"\data\%filesystem%\recipes\README.txt
-goto finish-De
-:createDP1-14En
-(
+echo 
 echo A Help for this new 1.13 function can find you here https://minecraft.gamepedia.com/Recipe
 echo Create custom recipes on https://crafting.thedestruc7i0n.ca/
 )>"%packname%"\data\%filesystem%\recipes\README.txt
-goto finish-En
+
+if %lang%==De goto finish-De
+if %lang%==En goto finish-En
 
 :createRP1-14
 mkdir "recourcepacks"
